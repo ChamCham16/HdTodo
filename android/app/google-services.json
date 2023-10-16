@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "739004383235",
+    "project_id": "hdtodo-eb4ce",
+    "storage_bucket": "hdtodo-eb4ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739004383235:android:02d7a378e8acd84c414e36",
+        "android_client_info": {
+          "package_name": "com.hdtodo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTaqi3s3hxyIK6Zan0S4OO61I1dH3iqlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
