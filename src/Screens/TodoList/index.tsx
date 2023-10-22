@@ -7,8 +7,8 @@ import { ITodo } from '~Types/Todo.Type';
 import { setTodos } from '~Store/Reducers/Todo';
 import { getTodos, deleteTodo } from '~Utils/Firestore.Util';
 
-import Todo from './Todo.Component';
 import NewTodo from './NewTodo.Component';
+import BeautifulTodo from './BeautifulTodo.Component';
 
 const TodoList: React.FC<TodoListProps> = ({ navigation }) => {
     const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ const TodoList: React.FC<TodoListProps> = ({ navigation }) => {
     }, []);
 
     const editTodo = useCallback((todo: ITodo) => {
-        navigation.navigate('TodoDetail', { todo });
+        navigation.navigate('TodoDetail', { id: todo.id });
     }, []);
 
     return (
@@ -37,7 +37,7 @@ const TodoList: React.FC<TodoListProps> = ({ navigation }) => {
             >
                 {todos.map(((todo, index) => {
                     return (
-                        <Todo
+                        <BeautifulTodo
                             key={index}
                             todo={todo}
                             onDelete={() => deleteTodo(todo.id)}

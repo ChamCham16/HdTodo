@@ -1,50 +1,66 @@
 import { memo, useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Button, Icon, Input } from '@rneui/themed';
 
 import { addTodo } from '~Utils/Firestore.Util';
 
 const NewTodo = () => {
+    const [adding, setAdding] = useState<boolean>(false);
     const [title, setTitle] = useState<string>('');
 
     const handleSubmit = () => {
+        setAdding(true);
         addTodo({
             title,
             description: '',
             done: false,
+            images: [],
         }, () => {
             setTitle('');
+            setAdding(false);
         })
     };
 
     return (
-        <View style={styles.form}>
-            <TextInput
-                style={styles.input}
-                placeholder="Add new todo"
-                placeholderTextColor="#000"
-                onChangeText={(text: string) => setTitle(text)}
-                value={title}
-            />
-            <Button onPress={handleSubmit} title="Add Todo" disabled={title === ''} />
-        </View>
+        <Input
+            containerStyle={styles.containter}
+            placeholder="Todo..."
+            inputContainerStyle={styles.input}
+            placeholderTextColor="gray"
+            onChangeText={(text: string) => setTitle(text)}
+            value={title}
+            rightIcon={
+                <Button
+                    containerStyle={{
+                        borderRadius: 20,
+                    }}
+                    onPress={handleSubmit}
+                    disabled={title === '' || adding}
+                >
+                    <Icon
+                        name="add"
+                        type="ionicon"
+                        color="#fff"
+                        containerStyle={{ borderRadius: 100 }}
+                    />
+                </Button>
+            }
+        />
     );
 };
 
 export default memo(NewTodo);
 
 const styles = StyleSheet.create({
-    form: {
-        marginVertical: 20,
-        flexDirection: 'row',
-        alignItems: 'center'
+    containter: {
+        flex: 0,
+        height: 90,
     },
     input: {
-        flex: 1,
-        height: 40,
-        borderWidth: 1,
-        borderRadius: 4,
-        padding: 10,
+        borderBottomWidth: 0,
+        marginVertical: 20,
+        borderRadius: 100,
+        paddingLeft: 12,
         backgroundColor: '#fff',
-        color: 'black',
     }
 });

@@ -16,6 +16,7 @@ export const getTodos = (callback?: (data: ITodo[]) => void) => {
                         return {
                             id: doc.id,
                             ...data,
+                            images: data?.images || [],
                             createdAt: data.createdAt?.toDate().toString() || null,
                         } as ITodo;
                     });
@@ -26,7 +27,7 @@ export const getTodos = (callback?: (data: ITodo[]) => void) => {
         return unsubscribe;
     } catch (error) {
         console.log(error);
-        return () => {};
+        return () => { };
     }
 }
 
@@ -68,11 +69,61 @@ export const updateTodo = (todo: ITodo, callback?: () => void) => {
             .update({
                 title: todo.title,
                 description: todo.description,
+                done: todo.done,
                 createdAt: firestore.Timestamp.fromDate(new Date()),
             })
             .then(() => {
                 !!callback && callback();
             })
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const checkTodo = (todo: ITodo, callback?: () => void) => {
+    try {
+        firestore()
+            .collection(collectionPath)
+            .doc(todo.id)
+            .update({
+                done: !todo.done,
+            })
+            .then(() => {
+                !!callback && callback();
+            })
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const pushImage = (todo: ITodo, url: string, callback?: (url: string) => void) => {
+    try {
+        firestore()
+            .collection(collectionPath)
+            .doc(todo.id)
+            .update({
+                images: [url, ...todo.images],
+            })
+            .then(() => {
+                !!callback && callback(url);
+            })
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteImage = (todo: ITodo, url: string, callback?: (url: string) => void) => {
+    try {
+        firestore()
+            .collection(collectionPath)
+            .doc(todo.id)
+            .update({
+                images: todo.images.filter((image) => image !== url),
+            })
+            .then(() => {
+                !!callback && callback(url);
+            })
+        // Albert: remember to delete the image from storage
     } catch (error) {
         console.log(error);
     }

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
@@ -5,13 +6,23 @@ import { Provider } from 'react-redux';
 import { RootStackParamList } from '~Screens/Screens.Props';
 import {
   TodoList,
-  TodoDetail
+  TodoDetail,
+  TodoCamera,
 } from '~Screens';
 import store from '~Store';
+import { useCameraPermission } from 'react-native-vision-camera';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
+  const { hasPermission, requestPermission } = useCameraPermission();
+
+  useEffect(() => {
+    if (!hasPermission) {
+      requestPermission();
+    }
+  }, []);
+
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -26,7 +37,12 @@ export default function App() {
             component={TodoDetail}
             options={{ title: "" }}
           />
-
+          <Stack.Screen
+            name="TodoCamera"
+            component={TodoCamera}
+            options={{ title: "" }}
+            
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
