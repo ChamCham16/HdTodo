@@ -1,3 +1,8 @@
+pod 'Firebase', :modular_headers => true
+pod 'FirebaseCore', :modular_headers => true
+pod 'GoogleUtilities', :modular_headers => true
+$RNFirebaseAsStaticFramework = true
+
 # Resolve react_native_pods.rb with node to allow for hoisting
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
