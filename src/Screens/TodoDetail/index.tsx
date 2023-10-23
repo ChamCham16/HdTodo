@@ -45,9 +45,8 @@ const TodoDetail: React.FC<TodoDetailProps> = ({ route, navigation }) => {
     }, []);
 
     const handleDelete = useCallback(() => {
-        deleteTodo(id, () => {
-            navigation.goBack();
-        });
+        navigation.goBack();
+        deleteTodo(id);
     }, [id]);
 
     return (
@@ -97,12 +96,15 @@ const TodoDetail: React.FC<TodoDetailProps> = ({ route, navigation }) => {
                     containerStyle={{
                         flex: 1,
                         borderRadius: 4,
+                        backgroundColor: '#fff',
+                        borderWidth: 1,
+                        borderColor: 'rgba(0, 0, 0, 0.1)',
                     }}
                     inputContainerStyle={{
                         borderBottomWidth: 0,
                         borderRadius: 4,
-                        paddingHorizontal: 12,
-                        backgroundColor: '#fff',
+                        padding: 12,
+                        paddingTop: 8,
                     }}
                     multiline
                     maxLength={800}
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        paddingVertical: 12,
+        paddingVertical: 16,
         gap: 12,
     },
     header: {
@@ -155,5 +157,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         backgroundColor: '#fff',
         borderRadius: 4,
+        marginBottom: 24,
     },
 });
