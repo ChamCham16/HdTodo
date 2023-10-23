@@ -52,7 +52,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) Need Camera Access to Take SnapShot and Save the Image in Todo List</string>
+	<string>$(PRODUCT_NAME) needs camera access to take snapshots.</string>
 	<key>UIAppFonts</key>
     <array>
         <string>AntDesign.ttf</string>
