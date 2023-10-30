@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
 import { useCameraPermission } from 'react-native-vision-camera';
+import { PermissionsAndroid, Platform } from 'react-native';
 
 import { RootStackParamList } from '~Screens/Screens.Props';
 import {
@@ -18,6 +19,11 @@ export default function App() {
   const { hasPermission, requestPermission } = useCameraPermission();
 
   useEffect(() => {
+    if (Platform.OS === 'android') {
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA);
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+    }
+
     if (!hasPermission) {
       requestPermission();
     }
