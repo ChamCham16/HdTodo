@@ -1,11 +1,12 @@
 import { useCallback, useEffect } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, Button } from 'react-native';
 
 import { TodoListProps } from '~Screens/Screens.Props';
 import { useAppDispatch, useAppSelector } from '~Store';
 import { ITodo } from '~Types/Todo.Type';
 import { setTodos } from '~Store/Reducers/Todo';
 import { getTodos, deleteTodo } from '~Utils/Firestore.Util';
+import { scheduleNotification, showNotification } from '~Utils/Notification.Util';
 
 import NewTodo from './NewTodo.Component';
 import BeautifulTodo from './BeautifulTodo.Component';
@@ -29,8 +30,25 @@ const TodoList: React.FC<TodoListProps> = ({ navigation }) => {
         navigation.navigate('TodoDetail', { id: todo.id });
     }, []);
 
+    const handleShowNotification = () => {
+        showNotification({
+            title: 'Hello',
+            message: 'world!',
+        });
+    };
+
+    const handleScheduleNotification = () => {
+        scheduleNotification({
+            title: 'hello',
+            message: 'world! (scheduled)',
+            date: new Date(Date.now() + 5 * 1000),
+        });
+    };
+
     return (
         <View style={styles.container}>
+            <Button onPress={handleShowNotification} title="Show Notification now" />
+            <Button onPress={handleScheduleNotification} title="Show Notification after 5s" />
             <NewTodo />
             <ScrollView
                 contentInsetAdjustmentBehavior="automatic"

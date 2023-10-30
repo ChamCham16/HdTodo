@@ -41,6 +41,7 @@
 		5709B34CF0A7D63546082F79 /* Pods-HdTodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HdTodo.release.xcconfig"; path = "Target Support Files/Pods-HdTodo/Pods-HdTodo.release.xcconfig"; sourceTree = "<group>"; };
 		5B6ED4FE1DCE4FBB46402EC1 /* Pods_HdTodo_HdTodoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HdTodo_HdTodoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7EB9410499542E8C5724F5 /* Pods-HdTodo-HdTodoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HdTodo-HdTodoTests.debug.xcconfig"; path = "Target Support Files/Pods-HdTodo-HdTodoTests/Pods-HdTodo-HdTodoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6903D7E02AED46E9000C30D0 /* HdTodo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HdTodo.entitlements; path = HdTodo/HdTodo.entitlements; sourceTree = "<group>"; };
 		699B4AC72AE5025F0059B694 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HdTodo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-HdTodo-HdTodoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HdTodo-HdTodoTests.release.xcconfig"; path = "Target Support Files/Pods-HdTodo-HdTodoTests/Pods-HdTodo-HdTodoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 		13B07FAE1A68108700A75B9A /* HdTodo */ = {
 			isa = PBXGroup;
 			children = (
+				6903D7E02AED46E9000C30D0 /* HdTodo.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -503,6 +505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HdTodo/HdTodo.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HdTodo/Info.plist;
@@ -530,6 +533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HdTodo/HdTodo.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = HdTodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -632,6 +636,10 @@
 					"-ld_classic",
 					"-Wl",
 					"-ld_classic",
+					"-Wl",
+					"-ld_classic",
+					"-Wl",
+					"-ld_classic",
 					"-Wl -ld_classic ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
@@ -713,6 +721,10 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+					"-Wl",
+					"-ld_classic",
 					"-Wl",
 					"-ld_classic",
 					"-Wl",
